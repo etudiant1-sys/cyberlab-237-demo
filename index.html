@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#081323">
+<title>CYBERLAB 237 | Cyber Awareness</title>
+<style>
+:root {
+  --bg:#081323;
+  --panel:#101f33;
+  --panel2:#142840;
+  --text:#f3f7fc;
+  --muted:#a4b6cc;
+  --accent:#54e6c2;
+  --line:#263b53;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(ellipse at 85% 0%,#153950 0,transparent 38%),
+    var(--bg);
+  line-height:1.6;
+}
+a { color:inherit; text-decoration:none; }
+button { font:inherit; cursor:pointer; }
+.container { width:min(1100px,92%); margin:auto; }
+header {
+  position:sticky; top:0; z-index:5;
+  background:#081323ed;
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(14px);
+}
+.nav {
+  min-height:76px; display:flex; align-items:center;
+  justify-content:space-between; gap:20px;
+}
+.brand { display:flex; align-items:center; gap:12px; }
+.logo {
+  display:grid; place-items:center; width:43px; height:43px;
+  background:#153a48; color:var(--accent);
+  border:1px solid #2a6b6c; border-radius:13px;
+  font-size:22px; font-weight:900;
+}
+.brand strong { display:block; letter-spacing:1.3px; }
+.brand small { color:var(--muted); font-size:10px; letter-spacing:1.2px; }
+.navlinks { display:flex; gap:23px; color:var(--muted); font-size:13px; }
+.navlinks a:hover { color:var(--accent); }
+.tag {
+  display:inline-flex; align-items:center; gap:8px;
+  border:1px solid #285c5d; background:#103331;
+  color:var(--accent); border-radius:50px;
+  padding:7px 12px; font-size:11px; font-weight:750;
+  letter-spacing:1px;
+}
+.dot { width:7px;height:7px;background:var(--accent);border-radius:50%; }
+.hero { padding:82px 0 64px; }
+.hero-grid {
+  display:grid; grid-template-columns:1.25fr .75fr;
+  gap:48px; align-items:center;
+}
+h1 {
+  font-size:clamp(38px,6vw,68px); line-height:1.04;
+  letter-spacing:-2.5px; margin:23px 0;
+}
+h1 span { color:var(--accent); }
+.lead { color:var(--muted); font-size:17px; max-width:600px; }
+.actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+.btn {
+  display:inline-flex; justify-content:center; align-items:center;
+  padding:13px 18px; border-radius:11px; font-weight:750;
+  border:1px solid var(--line); transition:.2s;
+}
+.btn-primary { background:var(--accent); color:#06201e; border-color:var(--accent); }
+.btn-secondary { background:var(--panel); }
+.btn:hover { transform:translateY(-2px); }
+.hero-card {
+  padding:24px; border:1px solid #29425b;
+  border-radius:22px; background:linear-gradient(145deg,#152a40,#0d1b2d);
+  box-shadow:0 25px 70px #0003;
+}
+.card-top { display:flex; align-items:center; justify-content:space-between; }
+.shield {
+  width:58px;height:58px;display:grid;place-items:center;
+  border-radius:17px;background:#103b3a;color:var(--accent);font-size:28px;
+}
+.label { color:var(--muted);font-size:11px;letter-spacing:1.5px; }
+.hero-card h2 { font-size:23px; margin:22px 0 8px; }
+.hero-card p { color:var(--muted);font-size:14px; }
+.progress { height:6px;background:#263b53;border-radius:9px;overflow:hidden;margin:20px 0 8px; }
+.progress div { width:25%;height:100%;background:var(--accent); }
+.section { padding:58px 0; }
+.section-head { max-width:650px;margin-bottom:28px; }
+.eyebrow { color:var(--accent);font-size:11px;letter-spacing:2px;font-weight:800; }
+h2 { font-size:clamp(27px,4vw,38px);line-height:1.2;margin:10px 0 12px; }
+.section-head p,.muted { color:var(--muted); }
+.grid3 { display:grid;grid-template-columns:repeat(3,1fr);gap:16px; }
+.card {
+  background:linear-gradient(150deg,var(--panel),#0c192a);
+  border:1px solid var(--line);border-radius:17px;padding:23px;
+}
+.card-icon {
+  display:grid;place-items:center;width:46px;height:46px;
+  border-radius:13px;background:#173747;color:var(--accent);
+  font-size:22px;margin-bottom:17px;
+}
+.card h3 { margin:0 0 9px;font-size:17px; }
+.card p { margin:0;color:var(--muted);font-size:14px; }
+.training { border-top:1px solid var(--line);border-bottom:1px solid var(--line); }
+.demo {
+  background:#0d1b2c;border:1px solid #29425b;border-radius:20px;
+  padding:24px;max-width:760px;
+}
+.demo-head {
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;padding-bottom:17px;border-bottom:1px solid var(--line);
+}
+.demo-head strong { font-size:14px; }
+.demo-head span { font-size:11px;color:var(--accent); }
+.example {
+  margin-top:20px;background:#15263a;border-radius:13px;padding:20px;
+}
+.warning { color:#ffcf82;font-size:12px;font-weight:800;letter-spacing:1px; }
+.example h3 { margin:8px 0;font-size:20px; }
+.example p { color:var(--muted);font-size:14px; }
+.clues { display:grid;gap:10px;margin:18px 0; }
+.clue {
+  border:1px solid var(--line);border-radius:10px;
+  padding:11px 13px;font-size:13px;color:#d6e3f1;
+}
+.clue b { color:var(--accent);margin-right:7px; }
+.feedback {
+  display:none;border-radius:10px;padding:13px;margin-top:14px;
+  background:#123b34;color:#d9fff4;font-size:14px;
+}
+.quiz-options { display:grid;gap:10px;margin:20px 0; }
+.quiz-options button {
+  text-align:left;color:var(--text);background:#13243a;
+  border:1px solid var(--line);padding:14px;border-radius:11px;
+}
+.quiz-options button:hover { border-color:var(--accent); }
+.quiz-options button:focus-visible,.btn:focus-visible {
+  outline:2px solid var(--accent);outline-offset:3px;
+}
+#quiz-result { color:var(--accent);font-weight:700;min-height:26px; }
+footer { border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:12px; }
+.footer-row { display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap; }
+@media(max-width:760px) {
+  .navlinks { display:none; }
+  .hero { padding-top:54px; }
+  .hero-grid { grid-template-columns:1fr;gap:30px; }
+  .grid3 { grid-template-columns:1fr; }
+  .section { padding:42px 0; }
+  h1 { letter-spacing:-1.6px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#accueil" aria-label="CYBERLAB 237 accueil">
+      <div class="logo">C</div>
+      <div>
+        <strong>CYBERLAB 237</strong>
+        <small>CYBER AWARENESS</small>
+      </div>
+    </a>
+    <nav class="navlinks" aria-label="Navigation principale">
+      <a href="#apprendre">Apprendre</a>
+      <a href="#simulation">Simulation</a>
+      <a href="#quiz">Mini-quiz</a>
+    </nav>
+    <a class="btn btn-secondary" href="#simulation">Démarrer le TP ↗</a>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="accueil">
+  <div class="container hero-grid">
+    <div>
+      <div class="tag"><span class="dot"></span> LABORATOIRE PÉDAGOGIQUE</div>
+      <h1>La meilleure défense, c'est <span>la vigilance.</span></h1>
+      <p class="lead">
+        Comprends les techniques de phishing, repère les signaux d'alerte
+        et découvre comment renforcer la sécurité de tes comptes et de ton
+        téléphone Android.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#simulation">Lancer la simulation →</a>
+        <a class="btn btn-secondary" href="#apprendre">Explorer les modules</a>
+      </div>
+    </div>
+    <aside class="hero-card">
+      <div class="card-top">
+        <div class="shield">⌑</div>
+        <span class="tag">MODE LOCAL</span>
+      </div>
+      <h2>Ton espace d'entraînement</h2>
+      <p>Un environnement conçu pour apprendre à identifier les tentatives
+         de fraude numérique sans exposer tes informations personnelles.</p>
+      <div class="progress"><div></div></div>
+      <div class="card-top">
+        <span class="label">PARCOURS PÉDAGOGIQUE</span>
+        <strong>01 / 04</strong>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="section" id="apprendre">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">LES FONDAMENTAUX</div>
+      <h2>Apprendre à reconnaître les menaces.</h2>
+      <p>Trois réflexes simples pour mieux protéger ses données numériques.</p>
+    </div>
+    <div class="grid3">
+      <article class="card">
+        <div class="card-icon">⌕</div>
+        <h3>Examiner les liens</h3>
+        <p>Vérifie le domaine, l'orthographe et la destination réelle avant
+           d'ouvrir un lien inattendu.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">◈</div>
+        <h3>Détecter l'urgence</h3>
+        <p>Méfie-toi des messages qui menacent de bloquer un compte ou
+           exigent une réaction immédiate.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">♧</div>
+        <h3>Protéger Android</h3>
+        <p>Installe les mises à jour et contrôle les permissions accordées
+           aux applications.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section training" id="simulation">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">DÉMONSTRATION CONTRÔLÉE</div>
+      <h2>Repère les signaux d'alerte.</h2>
+      <p>Lis cet exemple fictif et identifie les indices qui pourraient
+         signaler une tentative d'hameçonnage.</p>
+    </div>
+    <div class="demo">
+      <div class="demo-head">
+        <strong>EXEMPLE DE MESSAGE FICTIF</strong>
+        <span>● SIMULATION</span>
+      </div>
+      <div class="example">
+        <div class="warning">⚠ EXEMPLE À ANALYSER</div>
+        <h3>« Action urgente requise ! »</h3>
+        <p>
+          « Votre compte sera suspendu aujourd'hui. Cliquez immédiatement
+          sur le lien reçu pour éviter la fermeture. »
+        </p>
+        <div class="clues">
+          <div class="clue"><b>01</b> Menace de suspension immédiate</div>
+          <div class="clue"><b>02</b> Pression pour agir sans réfléchir</div>
+          <div class="clue"><b>03</b> Aucune confirmation par un canal officiel</div>
+        </div>
+        <button class="btn btn-primary" id="reveal" type="button">
+          Afficher l'analyse
+        </button>
+        <div class="feedback" id="analysis">
+          <strong>Analyse :</strong> l'urgence et la menace sont des
+          techniques classiques d'ingénierie sociale. Ne clique pas
+          automatiquement. Ouvre le site officiel par tes propres moyens
+          et vérifie l'alerte auprès du service concerné.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="quiz">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">TEST DE CONNAISSANCES</div>
+      <h2>Que ferais-tu face à ce message ?</h2>
+      <p>Choisis la meilleure réaction. Ce quiz s'exécute dans ton navigateur
+         et n'envoie aucune réponse à un serveur.</p>
+    </div>
+    <div class="demo">
+      <strong>Un message inattendu exige ton mot de passe sous cinq minutes.
+        Quelle est la meilleure réaction ?</strong>
+      <div class="quiz-options">
+        <button type="button" data-answer="wrong">
+          A — Cliquer rapidement pour éviter le blocage.
+        </button>
+        <button type="button" data-answer="correct">
+          B — Ne pas cliquer et vérifier par le canal officiel.
+        </button>
+        <button type="button" data-answer="wrong">
+          C — Transférer le message à tous ses contacts.
+        </button>
+      </div>
+      <div id="quiz-result" role="status" aria-live="polite"></div>
+      <button class="btn btn-secondary" id="reset" type="button">
+        Recommencer le quiz
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="card">
+      <div class="eyebrow">RÈGLES DU LABORATOIRE</div>
+      <h2>Apprendre sans mettre autrui en danger.</h2>
+      <p class="muted">
+        Cette plateforme est une démonstration éducative locale. Elle ne
+        demande ni ne collecte de mots de passe, de conversations, de photos
+        ou de données personnelles. Les tests sur un appareil réel doivent
+        respecter le périmètre d'autorisation du laboratoire.
+      </p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <span>© 2026 CYBERLAB 237 — Projet pédagogique</span>
+    <span>Éthique · Prévention · Sécurité numérique</span>
+  </div>
+</footer>
+
+<script>
+const reveal = document.getElementById("reveal");
+const analysis = document.getElementById("analysis");
+
+reveal.addEventListener("click", () => {
+  const isVisible = analysis.style.display === "block";
+  analysis.style.display = isVisible ? "none" : "block";
+  reveal.textContent = isVisible ? "Afficher l'analyse" : "Masquer l'analyse";
+});
+
+const result = document.getElementById("quiz-result");
+document.querySelectorAll("[data-answer]").forEach(button => {
+  button.addEventListener("click", () => {
+    if (button.dataset.answer === "correct") {
+      result.textContent = "Bonne réponse ! Vérifie toujours par un canal officiel.";
+    } else {
+      result.textContent = "Pas tout à fait. Ne clique pas sous la pression.";
+    }
+  });
+});
+
+document.getElementById("reset").addEventListener("click", () => {
+  result.textContent = "";
+});
+</script>
+</body>
+</html>
